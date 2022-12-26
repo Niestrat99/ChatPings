@@ -1,0 +1,41 @@
+  name: ChatPings
+  main: de.niestrat.chatpings.main.Main
+  version: 2.2
+  author: Niestrat99
+  description: A plugin that allows you to ping players or everyone.
+  api-version: 1.13
+  prefix: ''
+
+
+  permissions:
+    chatpings.admin:
+      default: op
+    chatpings.toggle:
+      default: true
+    chatpings.bypass:
+      default: op
+    chatpings.help:
+      default: true
+    chatpings.someone:
+      default: true
+    chatpings.player:
+      default: true
+
+  commands:
+    pingreload:
+      description: Reloads the config file.
+
+    pinghelp:
+      description: Help command for ChatPings.
+
+    pingtoggle:
+      description: Makes that only staff can ping you.
+
+    pingprefix:
+      description: Changes the prefix used for pings.
+
+    pinginfo:
+      description: Shows information about ChatPings.
+
+    pingresetcooldown:
+      description: Resets a player's cooldown.
