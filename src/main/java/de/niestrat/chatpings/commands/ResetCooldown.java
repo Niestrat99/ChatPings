@@ -20,8 +20,11 @@ public class ResetCooldown implements CommandExecutor {
             return false;
         }
 
+        Player player = (Player) sender;
+
         if (args.length < 1) {
-            sender.sendMessage(Language.getString("title") + Language.getString("error.args"));
+            CooldownManager.removeFromCooldown(player);
+            sender.sendMessage(Language.getString("title") + Language.getString("cooldown.resetsuccess").replace("{player}", sender.getName()));
             return false;
         }
 
