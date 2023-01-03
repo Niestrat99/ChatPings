@@ -6,6 +6,7 @@ import com.earth2me.essentials.UserMap;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -30,12 +31,11 @@ public class HookManager {
                     nicknames.put(user.getNickname(), player);
                 }
             }
-        } else {
-            System.out.println("It's not there! (Oh, the misery!)");
         }
         return nicknames;
     }
 
+    @Nullable
     public static String getNickname(Player player) {
         Plugin essentials = Bukkit.getPluginManager().getPlugin("Essentials");
         String username = null; // Placeholder
@@ -50,8 +50,6 @@ public class HookManager {
 
             if (user.getNickname() != null) {
                 username = user.getNickname();
-            } else {
-                username = player.getName();
             }
         }
         return username;

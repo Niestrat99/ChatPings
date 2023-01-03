@@ -5,6 +5,7 @@ import de.niestrat.chatpings.config.Config;
 import de.niestrat.chatpings.config.Language;
 import de.niestrat.chatpings.hooks.CooldownManager;
 import de.niestrat.chatpings.hooks.HookManager;
+import de.niestrat.chatpings.hooks.PlaceholderAPIManager;
 import de.niestrat.chatpings.hooks.PopUpManager;
 import de.niestrat.chatpings.main.Main;
 import org.bukkit.Bukkit;
@@ -132,7 +133,10 @@ public class PingListener implements Listener {
         if (player != null) {
             return player;
         } else {
-            return Bukkit.getPlayer(nickname);
+            player = PlaceholderAPIManager.getNicknames().get(nickname);
+            // If PlaceholderAPI's Player is not null then it shall return the player, otherwise it returns Bukkit's player.
+            return player != null ? player : Bukkit.getPlayer(nickname);
+
         }
     }
 

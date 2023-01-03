@@ -23,6 +23,7 @@ public class Config {
         config.addDefault("ping.Prefix", "@");
         config.addDefault("ping.everyoneFormat", "everyone");
         config.addDefault("ping.someoneFormat", "someone");
+        config.addDefault("ping.placeholder", "enter placeholder here");
 
         // Ping Cooldown Settings
         config.addDefault("pingcooldown.enabled", false);

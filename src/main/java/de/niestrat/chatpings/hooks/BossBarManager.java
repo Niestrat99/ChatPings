@@ -22,7 +22,9 @@ public class BossBarManager {
         String color    = Config.config.getString("pop-up.bosscolor");
 
         // Player variables
-        String pinger   = HookManager.getNickname(sender);
+        String pinger = HookManager.getNickname(sender);
+        if (pinger == null) pinger = PlaceholderAPIManager.getNickname(sender);
+        if (pinger == null) pinger = sender.getName();
 
 
         final int interval = 20; // 20 Ticks (1 Second)
@@ -37,7 +39,6 @@ public class BossBarManager {
             public void run() {
                 if (runLap == -1) {
                     createdBossBar.setProgress(0);
-                    Main.getInstance().getLogger().warning("Loop should be stopped!");
                     cancel();
                     createdBossBar.removePlayer(target);
                     return;

@@ -12,16 +12,6 @@ import java.util.Objects;
 
 public class PopUpManager {
 
-    private static Player getPlayer(String nickname) {
-        Player player = HookManager.getNicknames().get(nickname);
-
-        if (player != null) {
-            return player;
-        } else {
-            return Bukkit.getPlayer(nickname);
-        }
-    }
-
     public static void popUp(Player target, Player sender) {
         // If Pop Up setting is set to "none".
         if (Config.getString("pop-up-title").equals("none")) {
@@ -29,6 +19,8 @@ public class PopUpManager {
         }
 
         String pinger = HookManager.getNickname(sender);
+        if (pinger == null) pinger = PlaceholderAPIManager.getNickname(sender);
+        if (pinger == null) pinger = sender.getName();
 
         // Else it shall show one of these if set right.
         if (Config.config.getString("pop-up.title").equals("title")) {

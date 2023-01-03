@@ -21,15 +21,20 @@ repositories {
     maven {
         url = uri("https://repo.maven.apache.org/maven2/")
     }
+
+    maven {
+        url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+    }
 }
 
 dependencies {
+    compileOnly("me.clip:placeholderapi:2.11.2")
     compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
     compileOnly("net.ess3:EssentialsX:2.18.2")
 }
 
 group = "groupId"
-version = "2.2"
+version = "2.3"
 description = "ChatPings"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
