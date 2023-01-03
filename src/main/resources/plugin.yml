@@ -1,10 +1,9 @@
   name: ChatPings
   main: de.niestrat.chatpings.main.Main
-  version: 2.2
+  version: 2.3
   author: Niestrat99
   description: A plugin that allows you to ping players or everyone.
   api-version: 1.13
-  prefix: ''
 
 
   permissions:
