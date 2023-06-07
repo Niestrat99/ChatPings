@@ -128,14 +128,15 @@ public class PingListener implements Listener {
     }
 
     private Player getPlayer(String nickname) {
-        Player player = HookManager.getNicknames().get(nickname);
+        String rawNickname = nickname.toLowerCase();
+        Player player = HookManager.getNicknames().get(rawNickname);
 
         if (player != null) {
             return player;
         } else {
-            player = PlaceholderAPIManager.getNicknames().get(nickname);
+            player = PlaceholderAPIManager.getNicknames().get(rawNickname);
             // If PlaceholderAPI's Player is not null then it shall return the player, otherwise it returns Bukkit's player.
-            return player != null ? player : Bukkit.getPlayer(nickname);
+            return player != null ? player : Bukkit.getPlayer(rawNickname);
 
         }
     }
@@ -153,7 +154,7 @@ public class PingListener implements Listener {
             Player player = getPlayer(playerName);
             String ping = playerMatch.group(0);
             if (player != null) {
-                if (player.isOnline()) {
+                if (player.isOnline() && sender.canSee(player)) {
                     if (Toggle.mutePing.contains(player.getUniqueId())) {
                         if (sender.hasPermission("chatpings.bypass")) {
                             if (CooldownManager.checkForCooldown(sender)) {

@@ -28,6 +28,9 @@ public class Config {
         // Ping Cooldown Settings
         config.addDefault("pingcooldown.enabled", false);
         config.addDefault("pingcooldown.duration", 5);
+        config.addDefault("pingcooldown.duration.player", 5);
+        config.addDefault("pingcooldown.duration.someone", 5);
+        config.addDefault("pingcooldown.duration.everyone", 5);
 
         // Everyone Ping settings
         config.addDefault("everyonePing.color", "&b&l");

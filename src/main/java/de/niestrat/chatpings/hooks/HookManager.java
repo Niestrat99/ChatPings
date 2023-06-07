@@ -28,7 +28,7 @@ public class HookManager {
                 User user = userMaps.getUser(player.getUniqueId());
 
                 if (user.getNickname() != null) {
-                    nicknames.put(user.getNickname(), player);
+                    nicknames.put(user.getNickname().toLowerCase(), player);
                 }
             }
         }
