@@ -40,8 +40,8 @@ public class PingListener implements Listener {
 
 
         // For Player Pings
-        String playerFormatMessage = createPing(formatMessage, sender);
-        String playerRegularMessage = createPing(regularMessage, sender);
+        String playerFormatMessage = createPing(formatMessage, sender, formatMessage);
+        String playerRegularMessage = createPing(regularMessage, sender, formatMessage);
 
         // Ping Types
         String everyone = Config.getString("ping.Prefix") + Config.config.getString("ping.everyoneFormat");
@@ -62,8 +62,8 @@ public class PingListener implements Listener {
         if (formatMessage.contains(everyone) ||regularMessage.contains(everyone)) {
             if (!sender.hasPermission("chatpings.admin")) { return; }
 
-            formatMessage = formatMessage.replace(everyone, Config.getString("everyonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.everyoneFormat") + "&r");
-            regularMessage = regularMessage.replace(everyone, Config.getString("everyonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.everyoneFormat") + "&r");
+            formatMessage = formatMessage.replace(everyone, Config.getString("everyonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.everyoneFormat") + messageColorCode(formatMessage, formatMessage, formatMessage.indexOf(Config.getString("ping.Prefix"))));
+            regularMessage = regularMessage.replace(everyone, Config.getString("everyonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.everyoneFormat") + messageColorCode(regularMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
 
             if (CooldownManager.checkForCooldown(sender)) {
                 e.setCancelled(true);
@@ -103,8 +103,8 @@ public class PingListener implements Listener {
                     e.setCancelled(true);
                     return;
                 }
-                formatMessage = formatMessage.replace(someone, Config.getString("someonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + "(" + target.getName() + ")&r");
-                regularMessage = regularMessage.replace(someone, Config.getString("someonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") +"(" + target.getName() + ")&r");
+                formatMessage = formatMessage.replace(someone, Config.getString("someonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + "(" + target.getName() + ")" + messageColorCode(formatMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
+                regularMessage = regularMessage.replace(someone, Config.getString("someonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + "(" + target.getName() + ")" + messageColorCode(regularMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
                 PopUpManager.popUp(target, sender);
 
             } else {
@@ -112,8 +112,8 @@ public class PingListener implements Listener {
                     e.setCancelled(true);
                     return;
                 }
-                formatMessage = formatMessage.replace(someone, Config.getString("someonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + "&r");
-                regularMessage = regularMessage.replace(someone, Config.getString("someonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") +"&r");
+                formatMessage = formatMessage.replace(someone, Config.getString("someonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + messageColorCode(formatMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
+                regularMessage = regularMessage.replace(someone, Config.getString("someonePing.color") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + messageColorCode(regularMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
                 PopUpManager.popUp(target, sender);
             }
 
@@ -142,7 +142,7 @@ public class PingListener implements Listener {
     }
 
     // Private String for the player pings
-    private String createPing(String message, Player sender) {
+    private String createPing(String message, Player sender, String format) {
         if (!sender.hasPermission("chatpings.player")) { return message; }
 
         String pattern = "(" + Pattern.quote(Config.getString("ping.Prefix")) + ")" + "([A-Za-z0-9_]+)";
@@ -160,7 +160,7 @@ public class PingListener implements Listener {
                             if (CooldownManager.checkForCooldown(sender)) {
                                 return null;
                             }
-                            message = message.replace(ping, Config.getString("playerPing.color") + Config.getString("ping.Prefix") + playerName + "&r");
+                            message = message.replace(ping, Config.getString("playerPing.color") + Config.getString("ping.Prefix") + playerName + messageColorCode(message, format, playerMatch.start()));
                             player.playSound(player.getLocation(), Sound.valueOf(Config.getString("playerPing.sound")), Config.getFloat("playerPing.volume"), Config.getFloat("playerPing.pitch"));
                             PopUpManager.popUp(player, sender);
 
@@ -171,7 +171,7 @@ public class PingListener implements Listener {
                         if (CooldownManager.checkForCooldown(sender)) {
                             return null;
                         }
-                        message = message.replace(ping, Config.getString("playerPing.color") + Config.getString("ping.Prefix") + playerName + "&r");
+                        message = message.replace(ping, Config.getString("playerPing.color") + Config.getString("ping.Prefix") + playerName + messageColorCode(message, format, playerMatch.start()));
                         player.playSound(player.getLocation(), Sound.valueOf(Config.getString("playerPing.sound")), Config.getFloat("playerPing.volume"), Config.getFloat("playerPing.pitch"));
                         PopUpManager.popUp(player, sender);
 
@@ -181,6 +181,42 @@ public class PingListener implements Listener {
                 }
             }
         } return ChatColor.translateAlternateColorCodes('&', message);
+    }
+
+    private String messageColorCode(String msg, String format, int index) {
+        if (msg == null) {return "&r";}
+
+        // For message
+        Pattern pattern = Pattern.compile("(([&§][0-9a-fk-ox])+)");
+        Matcher matcher = pattern.matcher(msg);
+
+        // For format
+        Matcher formatMatcher = pattern.matcher(format);
+
+        int startingIndex = 0;
+        String colorCode = "&r";
+
+
+        while (matcher.find(startingIndex)) {
+            if (matcher.start() >= index) { break; } // Break the loop when matcher is bigger or equal to index
+
+            startingIndex = matcher.start() + 1;
+            colorCode = matcher.group(1); // Returns first group of color code pattern
+        }
+
+        int endingIndex = format.indexOf("%s");
+
+        if (colorCode.equals("&r")) {
+            startingIndex = 0;
+            while (formatMatcher.find(startingIndex)) {
+                if (formatMatcher.start() >= endingIndex) {break;}
+
+                startingIndex = formatMatcher.start() + 1;
+                colorCode = formatMatcher.group(1);
+            }
+        }
+
+        return "&r" + colorCode;
     }
 }
 
