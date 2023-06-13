@@ -34,7 +34,7 @@ dependencies {
 }
 
 group = "groupId"
-version = "2.5"
+version = "2.6"
 description = "ChatPings"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
