@@ -6,6 +6,7 @@ plugins {
     id("com.modrinth.minotaur") version "2.+"
     java
     `maven-publish`
+    idea
 }
 
 repositories {
@@ -34,7 +35,7 @@ dependencies {
 }
 
 group = "groupId"
-version = "2.6"
+version = "2.7"
 description = "ChatPings"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 

@@ -57,13 +57,12 @@ public class CooldownManager {
         return 0;
     }
 
-    public static void addPlayerToCooldown(UUID uuid) {
-        PingRunnable pingRunnable = new PingRunnable(uuid, 0);
+    public static void addPlayerToCooldown(UUID uuid, int pingCooldownTime) {
+        PingRunnable pingRunnable = new PingRunnable(uuid, pingCooldownTime);
 
         if (!cooldown.containsKey(uuid.toString())) {
             cooldown.put(uuid.toString(), new ArrayList<>());
         }
-
         List<PingRunnable> cooldowns = cooldown.get(uuid.toString());
         cooldowns.add(pingRunnable);
     }

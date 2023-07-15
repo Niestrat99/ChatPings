@@ -76,7 +76,7 @@ public class PingListener implements Listener {
                 everyPlayer.playSound(everyPlayer.getLocation(), Sound.valueOf(Config.getString("everyonePing.sound")), Config.getFloat("everyonePing.volume"), Config.getFloat("everyonePing.pitch"));
                 PopUpManager.popUp(everyPlayer, sender);
             }
-            CooldownManager.addPlayerToCooldown(sender.getUniqueId());
+            CooldownManager.addPlayerToCooldown(sender.getUniqueId(), Config.config.getInt("pingcooldown.duration.everyone"));
         }
 
         // SOMEONE PING
@@ -123,7 +123,7 @@ public class PingListener implements Listener {
             e.setMessage(ChatColor.translateAlternateColorCodes('&', regularMessage));
 
             target.playSound(target.getLocation(), Sound.valueOf(Config.getString("someonePing.sound")), Config.getFloat("someonePing.volume"), Config.getFloat("someonePing.pitch"));
-            CooldownManager.addPlayerToCooldown(sender.getUniqueId());
+            CooldownManager.addPlayerToCooldown(sender.getUniqueId(), Config.config.getInt("pingcooldown.duration.someone"));
         }
     }
 
@@ -164,7 +164,7 @@ public class PingListener implements Listener {
                             player.playSound(player.getLocation(), Sound.valueOf(Config.getString("playerPing.sound")), Config.getFloat("playerPing.volume"), Config.getFloat("playerPing.pitch"));
                             PopUpManager.popUp(player, sender);
 
-                            CooldownManager.addPlayerToCooldown(sender.getUniqueId());
+                            CooldownManager.addPlayerToCooldown(sender.getUniqueId(), Config.config.getInt("pingcooldown.duration.player"));
                         }
 
                     } else {
@@ -175,7 +175,7 @@ public class PingListener implements Listener {
                         player.playSound(player.getLocation(), Sound.valueOf(Config.getString("playerPing.sound")), Config.getFloat("playerPing.volume"), Config.getFloat("playerPing.pitch"));
                         PopUpManager.popUp(player, sender);
 
-                        CooldownManager.addPlayerToCooldown(sender.getUniqueId());
+                        CooldownManager.addPlayerToCooldown(sender.getUniqueId(), Config.config.getInt("pingcooldown.duration.player"));
                     }
 
                 }

@@ -27,7 +27,7 @@ public class Config {
 
         // Ping Cooldown Settings
         config.addDefault("pingcooldown.enabled", false);
-        config.addDefault("pingcooldown.duration", 5);
+        //config.addDefault("pingcooldown.duration", 5); <-- Outdated since we make type based unique cooldowns.
         config.addDefault("pingcooldown.duration.player", 5);
         config.addDefault("pingcooldown.duration.someone", 5);
         config.addDefault("pingcooldown.duration.everyone", 5);
