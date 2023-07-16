@@ -70,6 +70,10 @@ public class Config {
         save();
     }
 
+    public static String getColor(String color) {
+        return ChatColor.translateAlternateColorCodes('&', getString(color + ".color"));
+    }
+
     public static String getString(String path) {
         String str = config.getString(path);
         if (str == null) return "";

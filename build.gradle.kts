@@ -3,6 +3,7 @@
  */
 
 plugins {
+    id("xyz.jpenilla.run-paper") version "2.1.0"
     id("com.modrinth.minotaur") version "2.+"
     java
     `maven-publish`
@@ -35,7 +36,7 @@ dependencies {
 }
 
 group = "groupId"
-version = "2.7"
+version = "2.8_PRE_1"
 description = "ChatPings"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -53,4 +54,11 @@ modrinth {
     uploadFile.set(tasks.jar.get())
     gameVersions.addAll(arrayListOf("1.8", "1.9", "1.10", "1.11", "1.12", "1.13", "1.14", "1.15", "1.16", "1.17", "1.18", "1.18.1", "1.18.2", "1.19", "1.19.1", "1.19.2"))
     loaders.addAll(arrayListOf("paper", "spigot"))
+}
+
+tasks {
+    runServer {
+        minecraftVersion("1.20.1")
+        runDirectory.set(rootDir.resolve(".run"))
+    }
 }

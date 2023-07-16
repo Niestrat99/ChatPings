@@ -3,3 +3,4 @@ target
 ChatPings.iml
 .gradle
 build
+.run

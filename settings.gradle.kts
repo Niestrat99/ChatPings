@@ -7,5 +7,8 @@ rootProject.name = "ChatPings"
 pluginManagement {
     repositories {
         gradlePluginPortal()
+        maven("https://papermc.io/repo/repository/maven-public/")
+        mavenCentral()
     }
 }
+
