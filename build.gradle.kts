@@ -13,7 +13,7 @@ plugins {
 repositories {
     mavenLocal()
     maven {
-        url = uri("https://repo.papermc.io/repository/maven-public/")
+        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     }
 
     maven {
@@ -31,7 +31,7 @@ repositories {
 
 dependencies {
     compileOnly("me.clip:placeholderapi:2.11.2")
-    compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
     compileOnly("net.ess3:EssentialsX:2.18.2")
 }
 
