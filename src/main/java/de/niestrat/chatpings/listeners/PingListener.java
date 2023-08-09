@@ -23,7 +23,7 @@ public class PingListener implements Listener {
 
 
 
-    @EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
     // Functions used to be separated in three different classes, now been compiled into one.
     public void ping(AsyncPlayerChatEvent e) {
 
