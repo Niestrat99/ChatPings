@@ -200,6 +200,7 @@ public class PingListener implements Listener {
         }
 
         int endingIndex = format.indexOf("%s");
+        if (endingIndex == -1) endingIndex = format.indexOf("%2$s");
 
         if (colorCode.equals(SECTION + "r")) {
             startingIndex = 0;
