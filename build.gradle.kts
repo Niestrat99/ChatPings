@@ -13,6 +13,12 @@ plugins {
 repositories {
     mavenCentral()
     mavenLocal()
+
+    maven {
+        name = "papermc"
+        url = uri("https://papermc.io/repo/repository/maven-public/")
+    }
+
     maven {
         url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     }
@@ -40,6 +46,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
+
+    implementation("io.papermc:paperlib:1.0.7")
 }
 
 group = "groupId"
