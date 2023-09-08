@@ -26,8 +26,12 @@ public class Language {
         lang.addDefault("reload.done", "&bReload complete!");
 
         // Toggle
-        lang.addDefault("toggle.mute", "&bSuccessfully muted pings! &c[Only staff can ping you now!");
+        lang.addDefault("toggle.mute", "&bSuccessfully muted pings! &c(Only staff can ping you now!)");
         lang.addDefault("toggle.unmute", "&bSuccessfully unmuted pings!");
+        lang.addDefault("toggle.mutetarget", "&bSuccessfully muted pings for &e{player}&b! &c(Only staff can ping them now!)");
+        lang.addDefault("toggle.unmutetarget", "&bSuccessfully unmuted pings for &e{player}&b!");
+        lang.addDefault("toggle.notifytargetmute", "&bYour pings have been muted by a staff member.");
+        lang.addDefault("toggle.notifytargetunmute", "&bYour pings have been unmuted by a staff member.");
 
         // Prefix
         lang.addDefault("prefix.success", "&bSuccessfully set prefix to &e{prefix}&b!");

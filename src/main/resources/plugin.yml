@@ -19,6 +19,8 @@
       default: true
     chatpings.player:
       default: true
+    chatpings.admin.toggle:
+      default: op
 
   commands:
     pingreload:
