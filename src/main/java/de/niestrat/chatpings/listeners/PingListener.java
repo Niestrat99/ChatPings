@@ -2,10 +2,7 @@ package de.niestrat.chatpings.listeners;
 
 import de.niestrat.chatpings.commands.Toggle;
 import de.niestrat.chatpings.config.Config;
-import de.niestrat.chatpings.hooks.CooldownManager;
-import de.niestrat.chatpings.hooks.HookManager;
-import de.niestrat.chatpings.hooks.PlaceholderAPIManager;
-import de.niestrat.chatpings.hooks.PopUpManager;
+import de.niestrat.chatpings.hooks.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -33,6 +30,7 @@ public class PingListener implements Listener {
         String formatMessage = e.getFormat();
         String regularMessage = e.getMessage();
 
+        if (!ChattyHandler.checkForIgnoredChat(sender, regularMessage)) {return;}
 
         // For Player Pings
         String playerRegularMessage = createPing(regularMessage, sender, formatMessage);

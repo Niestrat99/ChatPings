@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Config {
 
@@ -24,6 +25,7 @@ public class Config {
         config.addDefault("ping.everyoneFormat", "everyone");
         config.addDefault("ping.someoneFormat", "someone");
         config.addDefault("ping.placeholder", "enter placeholder here");
+        config.addDefault("ping.ignored-chats", new ArrayList<>());
 
         // Ping Cooldown Settings
         config.addDefault("pingcooldown.enabled", false);
