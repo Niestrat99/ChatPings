@@ -52,7 +52,7 @@ public class PingListener implements Listener {
         // This line of code is to stop the API from shitting itself about NullPointerExceptions
 
         if (formatMessage.contains(everyone) ||regularMessage.contains(everyone)) {
-            if (!sender.hasPermission("chatpings.admin")) { return; }
+            if (!sender.hasPermission("chatpings.everyone")) { return; }
 
             // formatMessage = formatMessage.replace(everyone, Config.getColor("everyonePing") + Config.getString("ping.Prefix") + Config.config.getString("ping.everyoneFormat") + messageColorCode(formatMessage, formatMessage, formatMessage.indexOf(Config.getString("ping.Prefix"))));
             regularMessage = regularMessage.replace(everyone, Config.getColor("everyonePing") + Config.getString("ping.Prefix") + Config.config.getString("ping.everyoneFormat") + messageColorCode(regularMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));

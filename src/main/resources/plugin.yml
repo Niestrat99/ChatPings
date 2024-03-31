@@ -15,6 +15,8 @@
       default: op
     chatpings.help:
       default: true
+    chatpings.everyone:
+      default: op
     chatpings.someone:
       default: true
     chatpings.player:
