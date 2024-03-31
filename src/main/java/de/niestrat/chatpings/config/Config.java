@@ -55,7 +55,7 @@ public class Config {
         config.addDefault("someonePing.includePicked", true);
 
         // Pop-Up settings
-        config.addDefault("pop-up.title", "none"); // Options are "none", "title", "subtitle" and "actionbar".
+        config.addDefault("pop-up.type", "none"); // Options are "none", "title", "subtitle" and "actionbar".
         config.addDefault("pop-up.fade-in", 1);
         config.addDefault("pop-up.duration", 3); // Number set in seconds.
         config.addDefault("pop-up.fade-out", 1);
