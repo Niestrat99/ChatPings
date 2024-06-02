@@ -71,7 +71,7 @@ public class CooldownManager {
         int cooldown = secondsLeftOnCooldown(sender.getUniqueId(), sender);
 
         if (cooldown > 0) {
-            sender.sendMessage(Main.title(Language.getString("error.oncooldown").replace("{time}", String.valueOf(cooldown))));
+            sender.sendMessage(Language.getString("title") + Language.getString("error.oncooldown").replace("{time}", String.valueOf(cooldown)));
             return true;
         }
         return false;
