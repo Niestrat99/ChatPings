@@ -30,15 +30,6 @@ public class VAC {
 
         Main.getInstance().getLogger().info("SERVER VERSION: " + version);
 
-        // Check for validation
-        boolean isValid             = false;
-
-        if (version <= requiredVersion) {
-            isValid = false;
-        } else {
-            isValid = true;
-        }
-
-        return isValid;
+        return (version <= requiredVersion);
     }
 }

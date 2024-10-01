@@ -14,7 +14,7 @@ public class PopUpManager {
 
     public static void popUp(Player target, Player sender) {
         // If Pop Up setting is set to "none".
-        if (Config.getString("pop-up-title").equals("none")) {
+        if (Config.getString("pop-up.type").equals("none")) {
             return;
         }
 

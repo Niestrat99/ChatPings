@@ -49,9 +49,7 @@ public class PingListener implements Listener {
         
 
         // EVERYONE PING
-        // This line of code is to stop the API from shitting itself about NullPointerExceptions
-
-        if (formatMessage.contains(everyone) ||regularMessage.contains(everyone)) {
+        if (regularMessage.contains(everyone)) {
             if (!sender.hasPermission("chatpings.everyone")) { return; }
 
             // formatMessage = formatMessage.replace(everyone, Config.getColor("everyonePing") + Config.getString("ping.Prefix") + Config.config.getString("ping.everyoneFormat") + messageColorCode(formatMessage, formatMessage, formatMessage.indexOf(Config.getString("ping.Prefix"))));
@@ -62,7 +60,6 @@ public class PingListener implements Listener {
                 return;
             }
             e.setMessage(regularMessage);
-            // e.setFormat(formatMessage);
 
             for (Player everyPlayer : Bukkit.getOnlinePlayers()) {
                 everyPlayer.playSound(everyPlayer.getLocation(), Sound.valueOf(Config.getString("everyonePing.sound")), Config.getFloat("everyonePing.volume"), Config.getFloat("everyonePing.pitch"));
@@ -72,7 +69,7 @@ public class PingListener implements Listener {
         }
 
         // SOMEONE PING
-        if (formatMessage.contains(someone) || regularMessage.contains(someone)) {
+        if (regularMessage.contains(someone)) {
             if (!sender.hasPermission("chatpings.someone")) { return; }
 
             // Get the amount of players and get a random player using the randomizer
@@ -95,7 +92,6 @@ public class PingListener implements Listener {
                     e.setCancelled(true);
                     return;
                 }
-                // formatMessage = formatMessage.replace(someone, Config.getColor("someonePing") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + "(" + target.getName() + ")" + messageColorCode(formatMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
                 regularMessage = regularMessage.replace(someone, Config.getColor("someonePing") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + "(" + target.getName() + ")" + messageColorCode(regularMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
                 PopUpManager.popUp(target, sender);
 
@@ -104,7 +100,6 @@ public class PingListener implements Listener {
                     e.setCancelled(true);
                     return;
                 }
-                // formatMessage = formatMessage.replace(someone, Config.getColor("someonePing") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + messageColorCode(formatMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
                 regularMessage = regularMessage.replace(someone, Config.getColor("someonePing") + Config.getString("ping.Prefix") + Config.config.getString("ping.someoneFormat") + messageColorCode(regularMessage, formatMessage, regularMessage.indexOf(Config.getString("ping.Prefix"))));
                 PopUpManager.popUp(target, sender);
             }
