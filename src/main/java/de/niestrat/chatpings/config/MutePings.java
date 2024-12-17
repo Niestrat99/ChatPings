@@ -9,7 +9,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class MutePings {
 
@@ -18,7 +20,7 @@ public class MutePings {
     public static JSONArray readWriter = new JSONArray();
 
     public static void read() throws IOException, ParseException {
-        InputStreamReader input = new InputStreamReader(new FileInputStream(uuid));
+        InputStreamReader input = new InputStreamReader(Files.newInputStream(uuid.toPath()));
         readWriter = (JSONArray) new JSONParser().parse(input);
 
         for (Object uniqueID : readWriter) {
@@ -38,11 +40,11 @@ public class MutePings {
         }
         Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create(); // Allows the file to look pretty
         String s = gson.toJson(readWriter); // Convert the JSONObject to a string
-        OutputStreamWriter fw = new OutputStreamWriter(new FileOutputStream(uuid)); // This is used to write the JSON to the file
+        OutputStreamWriter fw = new OutputStreamWriter(Files.newOutputStream(uuid.toPath())); // This is used to write the JSON to the file
         try {
             fw.write(s.replace("\u0026", "&")); // Then write it
         } catch (IOException e) {
-            e.printStackTrace();
+            Main.log(Level.SEVERE, "Something went wrong writing MutePings JSON!", MutePings.class, e);
         } finally {
             fw.flush(); // Before flushing and closing it!
             fw.close();

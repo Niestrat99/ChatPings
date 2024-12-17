@@ -114,6 +114,11 @@ public class PingListener implements Listener {
         }
     }
 
+    /**
+     *
+     * USE THIS BELOW, MEATHEAD!
+     *
+     */
     private Player getPlayer(String nickname) {
         String rawNickname = nickname.toLowerCase();
         Player player = HookManager.getNicknames().get(rawNickname);

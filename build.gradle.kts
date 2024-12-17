@@ -4,7 +4,6 @@
 
 plugins {
     id("xyz.jpenilla.run-paper") version "2.1.0"
-    id("com.modrinth.minotaur") version "2.+"
     java
     `maven-publish`
     idea
@@ -38,16 +37,22 @@ repositories {
     maven {
         url = uri("https://jitpack.io")
     }
+
+    maven {
+        name = "nickapi"
+        url = uri("https://haoshoku.xyz:8081/repository/default/")
+    }
 }
 
 dependencies {
-    compileOnly("me.clip:placeholderapi:2.11.2")
+    compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
     compileOnly("net.ess3:EssentialsX:2.18.2")
     compileOnly("com.github.Brikster:Chatty:v2.19.4") {
         exclude("org.bstats")
 
     }
+    compileOnly("xyz.haoshoku.nick:nickapi:7.5")
 
     // https://mvnrepository.com/artifact/org.jetbrains/annotations
     implementation("org.jetbrains:annotations:24.0.1")
@@ -69,19 +74,11 @@ publishing {
     }
 }
 
-modrinth {
-    token.set(System.getenv("MODRINTH_TOKEN"))
-    projectId.set("WfG6niqV")
-    versionNumber.set(version.toString())
-    versionType.set("release")
-    uploadFile.set(tasks.jar.get())
-    gameVersions.addAll(arrayListOf("1.8", "1.9", "1.10", "1.11", "1.12", "1.13", "1.14", "1.15", "1.16", "1.17", "1.18", "1.18.1", "1.18.2", "1.19", "1.19.1", "1.19.2"))
-    loaders.addAll(arrayListOf("paper", "spigot"))
-}
-
 tasks {
     runServer {
-        minecraftVersion("1.20.1")
-        runDirectory.set(rootDir.resolve(".run"))
+        // Configure the Minecraft version for our task.
+        // This is the only required configuration besides applying the plugin.
+        // Your plugin's jar (or shadowJar if present) will be used automatically.
+        minecraftVersion("1.21.1")
     }
 }
