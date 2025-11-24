@@ -1,3 +1,4 @@
+/*
 package de.niestrat.chatpings.hooks.plugins;
 
 import org.bukkit.Bukkit;
@@ -19,3 +20,4 @@ public class NickApiHook implements NicknameHook {
         return username;
     }
 }
+*/

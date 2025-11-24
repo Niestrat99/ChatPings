@@ -4,7 +4,7 @@ import com.earth2me.essentials.Essentials;
 import com.earth2me.essentials.User;
 import com.earth2me.essentials.UserMap;
 import de.niestrat.chatpings.hooks.plugins.EssentialsHook;
-import de.niestrat.chatpings.hooks.plugins.NickApiHook;
+//import de.niestrat.chatpings.hooks.plugins.NickApiHook;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -56,14 +56,14 @@ public class HookManager {
     public static String getNickname(Player player) {
         String nickname = null;
         String essNick = new EssentialsHook().getNickname(player);
-        String nApiNick = new NickApiHook().getNickname(player);
+        //String nApiNick = new NickApiHook().getNickname(player);
 
         if (essNick != null) {
             nickname = essNick;
         }
-        if (nApiNick != null) {
+        /*if (nApiNick != null) {
             nickname = nApiNick;
-        }
+        }*/
 
         return nickname;
     }

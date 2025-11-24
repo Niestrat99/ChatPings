@@ -15,7 +15,7 @@ repositories {
 
     maven {
         name = "papermc"
-        url = uri("https://papermc.io/repo/repository/maven-public/")
+        url = uri("https://repo.papermc.io/repository/maven-public/")
     }
 
     maven {
@@ -38,21 +38,21 @@ repositories {
         url = uri("https://jitpack.io")
     }
 
-    maven {
+/*    maven {
         name = "nickapi"
         url = uri("https://haoshoku.xyz:8081/repository/default/")
-    }
+    }*/
 }
 
 dependencies {
     compileOnly("me.clip:placeholderapi:2.11.6")
-    compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
     compileOnly("net.ess3:EssentialsX:2.18.2")
     compileOnly("com.github.Brikster:Chatty:v2.19.4") {
         exclude("org.bstats")
 
     }
-    compileOnly("xyz.haoshoku.nick:nickapi:7.5")
+    //compileOnly("xyz.haoshoku.nick:nickapi:7.6")
 
     // https://mvnrepository.com/artifact/org.jetbrains/annotations
     implementation("org.jetbrains:annotations:24.0.1")
@@ -64,7 +64,7 @@ dependencies {
 }
 
 group = "groupId"
-version = "2.8_PRE_2"
+version = "2.8_PRE_3"
 description = "ChatPings"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -79,6 +79,6 @@ tasks {
         // Configure the Minecraft version for our task.
         // This is the only required configuration besides applying the plugin.
         // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.21.1")
+        minecraftVersion("1.21.8")
     }
 }

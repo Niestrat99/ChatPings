@@ -56,7 +56,7 @@ public class Main extends JavaPlugin {
             getLogger().warning("Illegal prefix found in config item 'ping.Prefix' - resetting to default.");
         }
 
-        if ("boss".equals(Config.config.getString("pop-up.title")) && !VAC.checkVersion(190)) {
+        /*if ("boss".equals(Config.config.getString("pop-up.title")) && !VAC.checkVersion(190)) {
             Config.config.set("pop-up.title", "none");
             try {
                 Config.save();
@@ -64,7 +64,7 @@ public class Main extends JavaPlugin {
                 log(Level.SEVERE, "Failed to save config!", this.getClass(), e);
             }
             getLogger().warning("Server cannot use boss health for ping pop ups - must be atleast version 1.19! - resetting to default.");
-        }
+        }*/
 
         try {
             Config.setDefaults();
