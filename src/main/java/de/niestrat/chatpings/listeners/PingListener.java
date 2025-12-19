@@ -128,7 +128,7 @@ public class PingListener implements Listener {
         } else {
             player = PlaceholderAPIManager.getNicknames().get(rawNickname);
             // If PlaceholderAPI's Player is not null then it shall return the player, otherwise it returns Bukkit's player.
-            return player != null ? player : Bukkit.getPlayer(rawNickname);
+            return player != null ? player : Bukkit.getPlayerExact(rawNickname);
 
         }
     }
